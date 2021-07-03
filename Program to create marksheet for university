@@ -1,0 +1,137 @@
+/*
+Develop a mark sheet in C++ for university examination with following data:
+a) Students’ name
+b) Enrolment no
+c) roll no
+d) Theory marks in 5 subjects
+e) Practical marks in five subjects
+f) grade
+Overload << and >> operator .Grade should be calculated for each subject. Use Constructor overloading.
+Roll no should be auto generated.
+
+
+*/
+
+#include<iostream>
+using namespace std;
+
+class MarkSheet
+{
+private:
+   string name;
+   int enroll;
+   int roll=0;
+   int theorey[5];
+   int practical[5];
+   char grade;
+public:
+   friend istream &operator >> (istream &din, MarkSheet &a);
+   friend ostream &operator << (ostream &dout ,MarkSheet &a);
+
+
+};
+istream &operator >> (istream &din,MarkSheet &a)
+
+{  static int r=0;
+    r++;
+    a.roll = r;
+   cout << "Enter the name of student :";
+   getline(din,a.name);
+   cout << "Enter the enrollment no. of student : ";
+   din >> a.enroll;
+   for(int i=0;i<5;i++)
+   {
+      static int count1=0;
+      count1++;
+      cout << "Enter marks for theory for subject " << count1 <<":";
+      din >> a.theorey[i];
+   }
+   for(int i=0;i<5;i++)
+   {
+      static int count2=0;
+      count2++;
+      cout << "Enter marks for practical for subject " << count2 << ":";
+      din >> a.practical[i];
+   }
+    }
+
+
+ostream &operator << (ostream &dout ,MarkSheet &a)
+{
+   dout << "Name of the student:"<< a.name << endl;
+   dout << "Enrollment number of student:"<< a.enroll << endl;
+   dout << "Roll number of student:"<< a.roll <<endl;
+   for(int i=0;i<5;i++)
+   {
+      static int count1=0;
+      count1++;
+      dout << "Theorey Marks for subject " << count1 <<":";
+      dout << a.theorey[i] <<endl;
+   }
+   for(int i=0;i<5;i++)
+   {
+      static int count2=0;
+      count2++;
+      dout << " Marks for practical subject " << count2 << ":";
+      dout <<  a.practical[i]<<endl;
+   }
+   for(int i=0;i<5;i++)
+   {
+   if(a.theorey[i]>=60)
+   {
+      a.grade = 'A';
+   }
+   else if(a.theorey[i]<60 && a.theorey[i]>=50)
+   {
+      a.grade = 'B';
+   }
+   else if (a.theorey[i]<50 && a.theorey[i]>=40)
+   {
+      a.grade = 'C';
+   }
+   else if(a.theorey[i]<40 && a.theorey[i]>=30)
+   {
+      a.grade = 'D';
+   }
+   else
+      {
+         a.grade = ' E';
+      }
+   dout <<"Grade for theory subject "<<a.grade <<endl;
+   }
+ for(int i=0;i<5;i++)
+   {
+   if(a.practical[i]>=60)
+   {
+      a.grade = 'A';
+   }
+   else if(a.practical[i]<60 && a.practical[i]>=50)
+   {
+      a.grade = 'B';
+
+   }
+   else if (a.practical[i]<50 && a.practical[i]>=40)
+   {
+      a.grade = 'C';
+   }
+   else if(a.practical[i]<40 && a.practical[i]>=30)
+   {
+      a.grade = 'D';
+   }
+   else
+      {
+       a.grade = 'E ';
+      }
+      dout << "Grade for practical subject " << a.grade <<endl;
+
+
+}
+}
+
+int main()
+{
+   MarkSheet M1;
+   cin >> M1;
+   cout << M1;
+   return 0;
+}
