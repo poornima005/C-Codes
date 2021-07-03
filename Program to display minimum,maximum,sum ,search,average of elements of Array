@@ -1,0 +1,102 @@
+/*Program to display the minimum, maximum, sum, search and average of elements of an array.*/
+
+
+#include<iostream>
+using namespace std;
+class Array{
+private:
+int A[5];
+int Total=0,n,avr=0;
+public:
+void input();
+void display();
+void total();
+void average();
+void found();
+void maximum();
+
+};
+void Array :: input(){
+cout<<"Enter the array:" << endl;
+for(int i=0;i<5;i++)
+{
+   cout<<"Enter the number:";
+   cin>>A[i];
+}
+}
+void Array :: display(){
+for(int i=0;i<5;i++)
+{
+cout<<"Number:"<<A[i]<<"\n";
+}
+}
+void Array :: total(){
+for(int i=0;i<5;i++)
+{
+  Total=A[i]+Total;
+}
+  cout<<"Total of array element is="<<Total<<"\n";
+
+}
+void Array :: average()
+{
+avr=Total/5;
+
+cout<<"Average of array element is="<<avr<<"\n";
+}
+void Array ::  found(){
+   int i=0;
+cout<<"Enter the number to search:\n";
+cin>>n;
+for( i=0;i<5;i++)
+{
+if(A[i]==n)
+{
+ cout<<"Number found\n";
+ break;
+}
+}
+ if(i==n)
+{
+cout<<"Number not found\n";
+
+}
+}
+void Array ::  maximum()
+{
+ for(int i=0;i<5;i++)
+ {
+    if(A[0]<A[i])
+    {
+       A[0]=A[i];
+    }
+
+ }
+ cout<<"Max number is:"<<A[0]<<"\n";
+ for(int i=0;i<5;i++)
+ {
+    if(A[0]>A[i])
+    {
+       A[0]=A[i];
+    }
+ }
+ cout<<"Min number is:"<<A[0]<<"\n";
+}
+
+
+
+
+
+int main()
+{
+   Array a1;
+   a1.input();
+   a1.display();
+   a1.total();
+   a1.average();
+   a1.found();
+   a1.maximum();
+   return 0;
+
+}
+
