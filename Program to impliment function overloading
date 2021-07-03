@@ -1,0 +1,28 @@
+/*Write a C++ program for calculating volume of sphere, cuboid and cylinder using function overloading.
+
+*/
+#include<iostream>
+using namespace std;
+
+float volume(float r)
+{
+  return (4/3* (3.14 * r * r)) ;
+}
+
+
+float volume(float l,float w,float h)
+{
+   return (l*w*h);
+}
+
+float volume(float r,float h )
+{
+   return(3.14*r*r*h);
+}
+int main()
+{
+ cout <<  "Volume of Sphere:" << volume(5.2) <<endl;
+ cout <<  "Volume of Cuboid:" << volume(5.4,6.0,3.1) <<endl;
+ cout <<  "Volume of Cylinder:"<< volume(5.0,6.0) <<endl;
+}
+
