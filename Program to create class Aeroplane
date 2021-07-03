@@ -1,0 +1,81 @@
+/*
+Define a class in C++ with following description:
+Private Members
+A data member Flight number of type integer
+A data member Destination of type string
+A data member Distance of type float
+A data member Fuel of type float
+A member function CALFUEL() to calculate the value of Fuel as per the following criteria
+            Distance                                                 Fuel
+            <=1000                                                   500
+            more than 1000  and <=2000                               1100
+            more than 2000                                           2200
+Public Members
+A function FEEDINFO() to allow user to enter values for Flight Number, Destination, Distance & call function CALFUEL() to calculate the quantity of Fuel.
+A function SHOWINFO() to allow user to view the content of all the data members.
+
+
+*/
+#include<iostream>
+using namespace std;
+class Aeroplane{
+ private:
+ int flight_num;
+ string des;
+ float dis,fuel;
+ int calfuel();
+
+
+ public:
+
+ void feedinfo();
+ void showinfo();
+ };
+
+ int Aeroplane :: calfuel()
+ {
+ if(dis<=1000)
+ {
+ fuel=500;
+ }
+ if(1000<dis&&dis<=2000)
+ {
+ fuel=1100;
+ }
+ if(dis>2000)
+ {
+ fuel=2200;
+ }
+ return fuel;
+ }
+
+ void Aeroplane :: feedinfo()
+ {
+ cout<<"Enter the flight number:";
+ cin>>flight_num;
+ cout<<"Enter the destination point:";
+ cin>>des;
+ cout<<"Enter the distance to reach the destination:";
+ cin>>dis;
+ calfuel();
+ }
+
+ void Aeroplane :: showinfo()
+ {
+ cout<<"Flight number="<<flight_num<<"\n";
+ cout<<"Destination="<<des<<"\n";
+ cout<<"Distance="<<dis<<"\n";
+ cout<<"Fuel="<<fuel<<"\n";
+ }
+
+
+
+ int main()
+ {
+ Aeroplane a;
+ a.feedinfo();
+ cout << "---Displaying Information---\n";
+ a.showinfo();
+ return 0;
+ }
+
