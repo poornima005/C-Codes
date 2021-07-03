@@ -1,0 +1,62 @@
+/*Define a class student with the following specification
+Private members of class student
+admno              ----           integer
+sname              ----           20 character
+eng. math, science ----           float
+total              ----           float
+Public member function of class student
+ctotal()-----  a function to calculate eng + math + science with float return type.
+Takedata()---- Function to accept values for admno, sname, eng, science Showdata()
+Function to display all the data members on the screen
+
+*/
+#include<iostream>
+using namespace std;
+class Student{
+private:
+int admno;
+char sname[20];
+float eng,math,science,total;
+public:
+void Takedata();
+int ctotal();
+void Showdata();
+
+};
+void Student::Takedata()
+{
+ cout<<"Enter the admission number:";
+ cin>>admno;
+ cout<<"Enter the name of student:";
+ cin>>sname;
+ cout<<"Enter English subject number:";
+ cin>>eng;
+ cout<<"Enter Maths subject number:";
+ cin>>math;
+ cout<<"Enter Science subject number:";
+ cin>>science;
+ }
+ int Student::ctotal()
+ {
+  total=eng+math+science;
+  return(total);
+  }
+  void Student::Showdata()
+  {
+  cout<<"Admission number:"<<admno<<"\n";
+  cout<<"Name:"<<sname<<"\n";
+  cout<<"English subject number:"<<eng<<"\n";
+  cout<<"Maths subject number:"<<math<<"\n";
+  cout<<"Science subject number:"<<science<<"\n";
+  cout<<"Total :"<<total<<"\n";
+  }
+
+  int main()
+  {
+  Student s;
+  s.Takedata();
+  s.ctotal();
+  s.Showdata();
+  return 0;
+  }
+
