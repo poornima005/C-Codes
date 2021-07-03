@@ -1,0 +1,61 @@
+/*
+Write a date class with data members dd, mm, yy. Write a constructor and overload ++ operator, << operator and >> operator.
+
+*/
+#include<iostream>
+using namespace std;
+
+class Date
+{
+private:
+
+  int dd;
+  int mm;
+  int yy;
+
+public:
+
+   friend istream & operator >> (istream &din , Date &date);
+   friend ostream & operator << (ostream &dout , Date &date);
+   Date operator ++ ();
+
+};
+
+istream & operator >> (istream &din , Date &date)
+{
+   cout << "Enter the date:";
+   din >> date.dd;
+   cout << "Enter the month:";
+   din >> date.mm;
+   cout << "Enter the year:";
+   din >> date.yy;
+   return din;
+   }
+
+  ostream & operator << (ostream &dout , Date &date)
+  {
+     dout << date.dd << "/" << date.mm << "/" << date.yy << endl;
+     return dout;
+       }
+
+  Date Date :: operator ++ ()
+       {
+          cout << "--Incremented date is--\n";
+          ++this->dd;
+         return *this;
+       }
+
+
+int main()
+{
+   Date D1,D2;
+   cin >> D1;
+   cout << D1;
+   D2 = ++D1;
+   cout << D2;
+
+   return 0;
+}
+
+
+
