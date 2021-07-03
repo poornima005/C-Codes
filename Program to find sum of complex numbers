@@ -1,0 +1,69 @@
+/*
+Write the definition for a class called complex that has floating point data members for storing real and imaginary parts.
+The class has the following member functions:
+void set(float, float) to set the specified value in object
+void disp() to display complex number object
+complex sum(complex) to sum two complex numbers & return complex number
+1. Write the definitions for each of the above member functions.
+2. Write main function to create three complex number objects. Set the value in two objects and call sum()
+ to calculate sum and assign it in third object. Display all complex numbers.
+
+
+
+*/
+#include<iostream>
+using namespace std;
+
+class Complex
+{
+private:
+
+   float real;
+   float imag;
+
+public:
+
+   void set(float x, float y);
+   void disp();
+   Complex sum(Complex &obj);
+};
+
+void Complex :: set(float x, float y)
+   {
+     real = x;
+     imag = y;
+
+   }
+
+   void Complex :: disp()
+   {
+      cout << real << "+i" << imag <<endl;
+   }
+
+   Complex Complex :: sum(Complex &obj)
+   {
+     Complex res;
+     res.real = real + obj.real;
+     res.imag = imag + obj.imag;
+     return res;
+   }
+
+
+
+int main()
+{
+
+Complex c1,c2;
+c1.set(5,2);
+cout <<"Complex number 1 =";
+c1.disp();
+c2.set(2,4);
+cout <<"Complex number 2 =";
+c2.disp();
+Complex c3 = c1.sum(c2);
+cout <<"Sum of complex numbers=";
+c3.disp();
+
+return 0;
+
+}
