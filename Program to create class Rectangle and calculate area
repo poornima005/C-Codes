@@ -1,0 +1,134 @@
+/*
+
+Write the definition for a class called Rectangle that has floating point data members length and width.
+ The class has the following member functions:
+void setlength(float) to set the length data member
+void setwidth(float) to set the width data member
+float perimeter() to calculate and return the perimeter of the rectangle
+float area() to calculate and return the area of the rectangle
+void show() to display the length and width of the rectangle
+int sameArea(Rectangle) that has one parameter of type Rectangle.
+sameArea returns 1 if the two Rectangles have the same area, and returns 0 if they don't.
+1. Write the definitions for each of the above member functions.
+2. Write main function to create two rectangle objects. Set the length and width of the first rectangle to 5 and 2.5.
+ Set the length and width of the second rectangle to 5 and 18.9. Display each rectangle and its area and perimeter.
+3. Check whether the two Rectangles have the same area and print a message indicating the result.
+ Set the length and width of the  first rectangle to 15 and 6.3. Display each Rectangle and its area and perimeter
+ again. Again, check whether the two Rectangles have the same area and print a message indicating the result.
+
+
+
+*/
+#include<iostream>
+using namespace std;
+class Rectangle
+{
+ private:
+
+ float length=0;
+ float width=0;
+ float a=0;
+ float p=0;
+
+ public:
+
+ void setlength(float );
+ void setwidth(float );
+ float area();
+ float perimeter();
+ void show();
+ int sameArea(Rectangle &obj );
+
+
+ };
+ void Rectangle :: setlength(float x)
+ {
+ length=x;
+ }
+
+ void Rectangle :: setwidth(float y)
+ {
+ width=y;
+ }
+
+ float Rectangle :: area()
+ {
+ a=length*width;
+ return a;
+ }
+
+ float Rectangle :: perimeter()
+ {
+ p=2*(length+width);
+ return p;
+ }
+
+ void Rectangle :: show()
+ {
+ cout<<"Length="<<length<<endl;
+ cout<<"Width="<<width<<endl;
+ cout<<"Area="<<a<<endl;
+ cout<<"Perimeter="<<p<<endl;
+ }
+
+ int Rectangle :: sameArea(Rectangle &obj)
+ {
+    if(a==obj.a)
+ {
+return 1;
+ }
+ else
+ {
+  return 0;
+ }
+ }
+
+
+ int main()
+ {
+ int f;
+ Rectangle c1,c2;
+ cout <<"----For first Part----\n";
+ cout<<"----For first rectangle----"<<"\n";
+ c1.setlength(5);
+ c1.setwidth(2.5);
+ c1.area();
+ c1.perimeter();
+ c1.show();
+ cout<<"----For second rectangle----"<<"\n";
+ c2.setlength(5);
+ c2.setwidth(18.9);
+ c2.area();
+ c2.perimeter();
+ c2.show();
+ f = c1.sameArea(c2);
+ if(f==1)
+ {
+   cout << "Area of both Triangles are same.\n";
+ }
+ else
+ {
+   cout << "Area of both  Triangles are different.\n";
+ }
+ cout << "----For second Part----\n";
+ c1.setlength(15);
+ c1.setwidth(6.3);
+ c1.area();
+ c1.perimeter();
+ cout << "----For First Rectangle----\n";
+ c1.show();
+ cout << "----For Second Rectangle----\n";
+ c2.show();
+ f = c1.sameArea(c2);
+ if(f==1)
+ {
+   cout << "Area of both Triangles are same.\n";
+ }
+ else
+ {
+   cout << "Area of both Triangles are different.";
+ }
+
+ }
+
+
