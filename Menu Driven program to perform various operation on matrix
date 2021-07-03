@@ -1,0 +1,140 @@
+/*Write a menu driven program to perform following:
+a) Input a matrix
+b) Display matrix
+c) Add two matrix
+d) Multiply two matrix
+e) Transpose a matrix
+
+
+
+*/
+#include<iostream>
+using namespace std;
+
+class Matrix
+{
+private:
+int a[3][3];
+public:
+void input()
+{
+cout<<"----Enter Matrix----\n";
+for(int i=0;i<2;i++)
+{
+for(int j=0;j<2;j++)
+{
+cout << "Enter the number:";
+cin>>a[i][j];
+}
+}
+}
+void display()
+{
+cout << "---Displaying Result---\n";
+for(int i=0;i<2;i++)
+{
+for(int j=0;j<2;j++)
+{
+cout << a[i][j];
+ }
+ cout << "\n";
+ }
+}
+
+Matrix addition(Matrix A,Matrix B)
+{
+for(int i=0;i<2;i++)
+{
+for(int j=0;j<2;j++)
+{
+this->a[i][j]=A.a[i][j]+B.a[i][j];
+}
+}
+return *this;
+}
+
+Matrix multiplication(Matrix A,Matrix B)
+{
+   for(int i = 0; i < 2; i++)
+   {
+   for(int j = 0; j < 2; j++)
+   {
+   this->a[i][j]=0;
+   for(int k = 0; k < 2; k++)
+   {
+   this->a[i][j] += A.a[i][k] * B.a[k][j];
+   }
+   }
+   }
+   return *this;
+
+}
+Matrix transpose(Matrix A)
+{
+for(int i=0;i<2;i++)
+   {
+   for(int j=0;j<2;j++)
+   {
+   this->a[i][j]=A.a[j][i];
+   }
+   }
+   return *this;
+}
+
+};
+int main()
+{
+ int choose;
+ do
+ {
+   cout<<"1.Addition of Matrix"<<endl
+         <<"2.Multiplication of Matrix"<<endl
+         <<"3.Transpose of Matrix"<<endl
+         <<"4.Exit"<<endl;
+  cout << "Enter the choice:";
+  cin >>choose;
+switch(choose)
+  {
+case 1:
+   {
+      Matrix m1,m2,m3;
+      cout <<"---For Addition---\n";
+      m1.input();
+      m2.input();
+      m3 = m3.addition(m1,m2);
+      m3.display();
+      break;
+   }
+case 2:
+   {
+      Matrix m1,m2,m3;
+      cout << "---For Multiplication---\n";
+      m1.input();
+      m2.input();
+      m3 = m3.multiplication(m1,m2);
+      m3.display();
+      break;
+   }
+case 3:
+   {
+      Matrix m1,m2;
+      cout << "---For Transpose---\n";
+      m1.input();
+      m2 = m2.transpose(m1);
+      m2.display();
+      break;
+   }
+   case 4:
+   {
+      break;
+   }
+default:
+   {
+      cout << "You entered wrong choice.";
+   }
+}
+ }
+while(choose!=4);
+return 0;
+}
+
