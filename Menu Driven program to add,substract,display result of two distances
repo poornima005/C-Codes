@@ -1,0 +1,181 @@
+/*
+Write a menu driven program for addition, subtraction, display result of two distances (given in meter and centimetre) .
+i.	Overload ‘+’ operator with member function
+ii.	Overload ‘–‘ operator using friend function
+iii.	Overload << and >> operator
+*/
+#include<iostream>
+using namespace std;
+
+class Distance
+{
+private:
+   int meter;
+   int centimeter;
+public:
+   friend istream & operator >> (istream &din , Distance &dist);
+   friend ostream & operator <<  (ostream &dout , Distance &dist);
+   Distance operator + (Distance &dist);
+   Distance operator - (Distance &dist);
+   int   operator == (Distance &dist);
+   };
+
+
+  istream & operator >> (istream &din , Distance &dist)
+   {
+      cout << "Enter the distance in meter:"<< endl;
+      din >> dist.meter;
+      cout << "Enter the distance in centimeter:"<<endl;
+      din >> dist.centimeter;
+      return din;
+   }
+
+   ostream & operator << (ostream &dout , Distance &dist)
+   {
+      dout <<dist.meter <<" " <<   "meter" << " "  <<  dist.centimeter <<" " << "centimeter" << endl;
+      return dout;
+   }
+
+   Distance Distance :: operator + (Distance &dist)
+   {
+      int i=0;
+      cout << "----Addition of distance----"<< endl;
+      Distance D;
+      D.meter = meter + dist.meter;
+      D.centimeter = centimeter + dist.centimeter;
+      while(D.centimeter >= 100)
+      {
+      if(D.centimeter >= 100)
+      {
+         D.meter++;
+         D.centimeter -= 100;
+
+      }
+      i++;
+      }
+      return D;
+   }
+
+   Distance Distance :: operator - (Distance &dist)
+   {
+      int i=0;
+     cout << "----Subtraction of distance----"<<endl;
+     Distance D;
+      D.meter = meter - dist.meter;
+      D.centimeter = centimeter - dist.centimeter;
+      while(D.centimeter >= 100)
+      {
+      if(D.centimeter >= 100)
+      {
+         D.meter++;
+         D.centimeter -= 100;
+
+      }
+      i++;
+      }
+      return D;
+
+   }
+
+   int Distance :: operator == (Distance &dist)
+   {
+
+      if( meter==dist.meter && centimeter==dist.centimeter)
+      {
+         return 1;
+      }
+      else
+         {
+         return 0;
+      }
+   }
+
+
+   int main ()
+   {
+      int choose;
+      do
+      {
+         cout << "1.Addition of distances." <<endl;
+         cout << "2.Subtraction of distances."<<endl;
+         cout << "3.Comparision of distances."<<endl;
+         cout << "4.Exit" <<endl;
+
+         cout << "Enter the choice:";
+         cin >>choose;
+switch(choose)
+{
+/*case 1:
+   {
+     Distance d1,d2;
+   cout << "--For distance 1--"<<endl;
+   cin >> d1;
+   cout <<d1;
+   cout << "--for distance 2--"<<endl;
+   cin >> d2;
+   cout << d2;
+   break;
+   }*/
+   case 1:
+   {
+     Distance d1,d2;
+   cout << "--For distance 1--"<<endl;
+   cin >> d1;
+   cout <<d1;
+   cout << "--For distance 2--"<<endl;
+   cin >> d2;
+   cout << d2;
+   Distance d3 = d1 + d2;
+   cout << d3;
+   break;
+   }
+   case 2:
+      {
+
+   Distance d1,d2;
+   cout << "--For distance 1--"<<endl;
+   cin >> d1;
+   cout <<d1;
+   cout << "--For distance 2--"<<endl;
+   cin >> d2;
+   cout << d2;
+   Distance d3 = d1 - d2;
+   cout << d3;
+   break;
+      }
+   case 3:
+      {
+         Distance d1,d2;
+   cout << "--For distance 1--"<<endl;
+   cin >> d1;
+   cout <<d1;
+   cout << "--For distance 2--"<<endl;
+   cin >> d2;
+   cout << d2;
+   cout <<"----Comparision of Distances----" <<endl;
+   if(d1==d2)
+   {
+     cout << "Both the distances are equal" <<endl;
+
+   }
+   else
+   {
+      cout << "Both the distances are different" <<endl;
+   }
+      }
+   case 4:
+      {
+         break;
+      }
+   default :
+      {
+         cout << "You entered the wrong choice.\n";
+      }
+
+
+
+}
+}while(choose!=4);
+   return 0;
+   }
+
