@@ -1,0 +1,83 @@
+/*
+Write a program to read a list containing item name, item code and cost interactively and produce a three column output
+ as shown below:
+
+
+
+Note that  the name and code are left justified and the cost is right-justified with a precision of two digits.
+ Training zeros are shown. Also fill the unused spaces with hyphens.
+*/
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+class Item
+{
+private:
+string item_name;
+int code;
+int cost;
+
+public:
+
+void input();
+void display();
+};
+
+void Item :: input()
+{
+static int count =0;
+count++;
+cout <<"Enter information of item:"<<count<<endl;
+cout << "Enter Item name:";
+cin>>item_name;
+cout << "Enter code of item:";
+cin >>code;
+cout << "Enter cost of item:";
+cin >>cost;
+}
+
+void Item :: display()
+{
+   static int count=0;
+   count++;
+   if(count==1)
+   {
+      cout <<left<<setw(15)<<"Item Name"<<left<<setw(15)<<"Item Code"<<right<<setw(15)<<"Item Cost"<<"\n";
+   }
+cout <<left <<setw(15)<<item_name<<left<<setw(15)<<code<<right<<setw(15)<<cost<<"\n";
+}
+
+void blank()
+{
+    cout <<left <<setw(15)<<"----"<<left<<setw(15)<<"----"<<right<<setw(15)<<"----"<<"\n";
+
+}
+
+int main()
+{
+Item I[10];
+int n;
+cout << "Number of Items:";
+cin >>n;
+
+for(int i=0;i<n;i++)
+{
+   I[i+1].input();
+}
+
+
+for(int i=0;i<n;i++)
+{
+   I[i+1].display();
+}
+
+for(int i=n;i<=10;i++)
+{
+   blank();
+}
+
+return 0;
+
+}
