@@ -1,0 +1,128 @@
+/*
+An educational institution wishes to maintain a database of its employees.
+The database is divided into number of classes whose hierarchical relationships are shown in below figure.
+ The figure also shows minimum information required for each class.
+ Specify all the classes and define functions to create the database and retrieve individual information as and
+  when required.
+
+
+
+*/
+#include<iostream>
+using namespace std;
+
+class Staff
+{
+   protected:
+   int code;
+   string name;
+public:
+   Staff(int code,string name)
+   {
+      this->code = code;
+      this->name = name;
+   }
+};
+
+class Teacher : public Staff
+{
+   protected:
+   string subject;
+   string publication;
+public:
+   Teacher(string subject,string publication,int code,string name) : Staff(code, name)
+   {
+      this->subject = subject;
+      this->publication = publication;
+   }
+   void display()
+   {  cout <<"--Teachers--\n";
+      cout << "Name:" << name<<endl;
+      cout << "Subject:" <<subject<<endl;
+      cout << "Publication: "<<publication <<endl;
+      cout << "Code:" <<code <<endl;
+   }
+};
+
+class Typist : public Staff
+{
+   protected:
+ int speed;
+ public:
+    Typist(int speed,int code,string name): Staff(code,name)
+    {
+       this->speed = speed;
+    }
+ };
+
+class Officer : public Staff
+{
+protected:
+
+   char grade;
+public:
+   Officer(char grade,int code,string name):Staff(code,name)
+   {
+   this-> grade = grade;
+   }
+   void display()
+   {  cout <<"--Officer--\n";
+      cout << "Name:" <<name<<endl;
+      cout << "Grade:" <<grade<<endl;
+      cout << "Code:" << code<<endl;
+   }
+};
+
+class Regular : public Typist
+{
+public:
+   Regular(int speed,int code,string name):Typist(speed,code,name)
+   {
+
+   }
+   void display()
+   {  cout << "--Regular Typist--\n";
+      cout << "Name:" <<name<<endl;
+      cout << "Speed of typing:"<<speed<<endl;
+      cout << "Code:" << code<<endl;
+   }
+
+
+};
+
+class Casual : public Typist
+{
+protected:
+
+   string daily;
+   int wages;
+public:
+   Casual(string daily,int wages,int speed,int code,string name): Typist(speed,code,name)
+   {
+      this->daily = daily;
+      this->wages = wages;
+   }
+   void display()
+   {  cout << "--Casual Typist--\n";
+      cout << "Name :"<<name<<endl;
+      cout << "Speed of Typing:"<<speed <<endl;
+      cout << "Wages:"<<wages<<endl;
+      cout << "Status:"<<daily <<endl;
+      cout << "Code:"<<code<<endl;
+
+   }
+};
+int main()
+{
+   cout <<"***Displaying Information of Employees***\n";
+   Teacher T("Mathematics","India",1001,"Poornima Tanwar");
+   T.display();
+   Officer O('A',1002,"Aditi Roy");
+   O.display();
+   Regular R( 50,1004,"Kratika Dhote");
+   R.display();
+   Casual C("daily",2000,20,1005,"Ruchita Singh");
+   C.display();
+
+
+}
