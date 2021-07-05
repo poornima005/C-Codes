@@ -1,0 +1,74 @@
+/*
+ Write a program to create a class EMP which have data member
+ Name, Employee ID, contact number, address, year of joining and department in which he/she is working with
+ data member get and put. Create a database of minimum 300 employees.
+ Store and retrieve information on the basis of above configuration
+*/
+
+#include<iostream>
+#include<conio.h>
+using namespace std;
+
+class EMP
+{
+private:
+string name,address,dep;
+int cont_num,year,emp_id;
+
+public:
+
+void input();
+void show();
+
+};
+
+void EMP :: input()
+{
+static int count=0;
+count++;
+cout << "---For Employee"<<count <<"---\n";
+cout << "Enter the name of Employee:";
+cin.ignore();
+getline (cin,name);
+cout << "Enter the Employee ID:";
+cin >> emp_id;
+cout << "Enter the department of Employee:";
+cin.ignore();
+getline(cin,dep);
+cout <<"Enter the address of Employee:";
+cin.ignore();
+getline(cin,address);
+cout << "Enter the year of joining of Employee:";
+cin >> year;
+cout << "Enter the contact number of Employee:";
+cin>>cont_num;
+
+
+}
+
+void EMP ::show()
+{
+ static int count=0;
+ count++;
+cout<<"***Displaying Information of employee "<<count<<" ***\n";
+cout << "Name:" << name<<endl;
+cout << "Employee ID:"<<emp_id<<endl;
+cout << "Department:"<<dep<<endl;
+cout << "Year of Joining:"<<year<<endl;
+cout << "Contact Number:"<<cont_num<<endl;
+cout << "Address:"<<address<<endl;
+}
+
+
+
+int main()
+{
+EMP e[300];
+e[1].input();
+e[1].show();
+e[2].input();
+e[2].show();
+
+return 0;
+}
+
