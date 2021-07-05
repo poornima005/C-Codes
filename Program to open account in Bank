@@ -1,0 +1,188 @@
+/*
+  Assume that a bank maintains two kinds of accounts, are called as saving account and current account.
+   The saving account provides compound interest and withdrawal facilities but no cheque book facility.
+   The current account provides cheque book facility but no interest.
+    Current account holders should also maintain a minimum balance and if the balance falls below the level,
+    a service charge is imposed.
+   Create a class account that stores customer name, account number and type of account.
+   From this derive the classes cur_acct and sav_acct to make them more specific to their requirements.
+   Include necessary member functions in order to achieve the following tasks:
+a.	Include constructor for all the three classes.
+b.	Accept deposit amount from the customer and update the balance.
+c.	Display the balance.
+d.	Compute and deposit interest.
+e.	Permit withdrawal and update the balance.
+f. Check for minimum balance, impose penalty, necessary and update the balance.
+
+*/
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+class Account
+{
+
+protected:
+
+string customer_name;
+int acc_num;
+string type;
+int bal;
+
+public:
+
+   Account(string customer_name, int acc_num, string type, int bal)
+   {
+      this->customer_name = customer_name;
+      this->acc_num = acc_num;
+      this->type = type;
+      this->bal = bal;
+   }
+
+   void display_acc()
+   {
+      cout << "Name:"<<customer_name<<endl;
+      cout <<"Account number:"<<acc_num<<endl;
+      cout << "Type of account:"<<type<<endl;
+      cout <<"Balance:"<<bal<<endl;
+   }
+
+
+
+   void deposit()
+   {
+      int deposit;
+      cout << "Enter how much amount you want to deposit:";
+      cin >>deposit;
+      bal += deposit;
+      cout << "Your account balance is:"<<bal<<endl;
+   }
+
+
+};
+
+class Current : public Account
+{
+
+
+protected:
+
+   int min_bal=500;
+
+public:
+
+   Current(string customer_name,int acc_num,string type,int bal):Account(customer_name,acc_num,type, bal)
+   {
+
+   }
+   void display_curr()
+   {
+      display_acc();
+   }
+
+
+   void withdrawn()
+   {
+      if(bal>min_bal)
+      {
+      int withdrawn;
+      cout << "Enter how much money you want to withdrawn:";
+      cin >> withdrawn;
+      {
+      if(withdrawn<bal)
+      {
+      bal -= withdrawn;
+      cout << "Your account balance is:"<<bal <<endl;
+      }
+      else
+      {
+          cout <<"Amount is not sufficient for withdrawn.\n";
+      }
+      }
+      }
+
+      else
+         {
+         cout << "Account money is not sufficient to withdrawn.\n";
+         }
+   }
+
+
+
+
+};
+class Saving : public Account
+{
+protected:
+   int min_bal =0;
+
+public:
+   Saving(string customer_name,int acc_num,string type,int bal):Account( customer_name, acc_num, type, bal)
+   {
+
+   }
+   void withdrawn()
+   {
+      if(bal>min_bal)
+      {
+      int withdrawn;
+      cout << "Enter how much money you want to withdrawn:";
+      cin >> withdrawn;
+      {
+      if(withdrawn<bal)
+      {
+      bal -= withdrawn;
+      cout << "Your account balance is:"<<bal <<endl;
+      }
+      else
+      {
+          cout <<"Amount is not sufficient for withdrawn.\n";
+      }
+      }
+      }
+
+      else
+         {
+         cout << "Account money is not sufficient to withdrawn.\n";
+         }
+   }
+
+
+
+   void display_sav()
+   {
+      display_acc();
+   }
+
+   void comp_int()
+   {
+      int time,interest,year;
+      int interest_rate = 2;
+      cout << "Enter the year when of account opening:";
+      cin >>year;
+      time = 2021-year;
+        interest = bal * pow(1 + interest_rate / 100.0, time) - bal;
+        cout << "Your account balance is Rs."<<interest <<" with interest\n";
+
+   }
+
+};
+
+int main()
+{
+   cout << "---For Current Account---\n";
+   Current C("Poornima Tanwar" , 1, "Current", 5000);
+   C.display_curr();
+   C.deposit();
+   C.withdrawn();
+   cout << "---For Saving Account---\n";
+   Saving S("Kratika Dhote" , 2, "Saving", 10000);
+   S.display_sav();
+   S.deposit();
+   S.comp_int();
+   S.withdrawn();
+
+   return 0;
+
+
+}
